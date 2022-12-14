@@ -1,27 +1,24 @@
 const BASE = 12
 const SOLAR = get_upcoming_solar_event()
-const BROONS = new Date('2022-12-13T19:00:00-05:00').getTime()
+const BROONS = new Date('2022-12-15T19:00:00-05:00').getTime()
 
 function set_it() {
-  let epoch = convert_secs(Date.now() / 1000)
-  let daily_clock = convert_secs(Math.abs((Date.now() - SOLAR) / 1000))
-  let bruins = convert_secs(Math.abs((Date.now() - BROONS) / 1000))
   document.getElementById('bang-time').innerHTML =
-    '14~47000000' + epoch.replace(/0+$/, '')
-  /* document.getElementById('unix-time').innerHTML = */
-  /*   (epoch.length - 1).toString(BASE) + '~' + epoch.replace(/0+$/, '') */
-  document.getElementById('sun').innerHTML =
-    (daily_clock.length - 1).toString(BASE) +
+    '14~47000000' + convert_secs(0).replace(/0+$/, '')
+  modify_element('sun', convert_secs(SOLAR))
+  modify_element('bruins', convert_secs(BROONS))
+}
+
+function modify_element(el_name, tics) {
+  document.getElementById(el_name).innerHTML =
+    (tics.length - 1).toString(BASE) +
     '~' +
-    daily_clock.substring(0, 3).replace(/0+$/, '')
-  document.getElementById('bruins').innerHTML =
-    (bruins.length - 1).toString(BASE) +
-    '~' +
-    bruins.substring(0, 3).replace(/0+$/, '')
+    tics.substring(0, 3).replace(/0+$/, '')
 }
 
 function convert_secs(x) {
-  let tics = Math.floor(x * 1.78)
+  a = Math.abs((Date.now() - x) / 1000)
+  let tics = Math.floor(a * 1.78)
   return tics.toString(BASE)
 }
 
