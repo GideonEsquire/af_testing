@@ -1,9 +1,11 @@
 const BASE = 12
 const SOLAR = get_upcoming_solar_event()
+const BROONS = new Date('2022-12-13T19:00:00-05:00').getTime()
 
 function set_it() {
   let epoch = convert_secs(Date.now() / 1000)
   let daily_clock = convert_secs(Math.abs((Date.now() - SOLAR) / 1000))
+  let bruins = convert_secs(Math.abs((Date.now() - BROONS) / 1000))
   document.getElementById('bang-time').innerHTML =
     '14~47000000' + epoch.replace(/0+$/, '')
   /* document.getElementById('unix-time').innerHTML = */
@@ -12,6 +14,10 @@ function set_it() {
     (daily_clock.length - 1).toString(BASE) +
     '~' +
     daily_clock.substring(0, 3).replace(/0+$/, '')
+  document.getElementById('bruins').innerHTML =
+    (bruins.length - 1).toString(BASE) +
+    '~' +
+    bruins.substring(0, 3).replace(/0+$/, '')
 }
 
 function convert_secs(x) {
@@ -39,6 +45,7 @@ function make_request(url) {
   $.ajax({
     url: url,
     dataType: 'json',
+    /* how to make this work when 'true'? */
     async: false,
     success: (data) => {
       res.rise = new Date(data.results.sunrise).getTime()
