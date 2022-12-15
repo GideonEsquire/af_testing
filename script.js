@@ -1,25 +1,76 @@
-const BASE = 12
-const SOLAR = get_upcoming_solar_event()
-const BROONS = new Date('2022-12-15T19:00:00-05:00').getTime()
+function main() {
+  const EVENTS = [
+    {
+      id: 'sun',
+      time: get_upcoming_solar_event(),
+      desc: 'Tics until next solar event',
+    },
+    {
+      id: 'bruins',
+      time: new Date('2022-12-15T19:00:00-05:00').getTime(),
+      desc: 'Next Bruins game!',
+    },
+    {
+      id: 'xmas',
+      time: new Date('2022-12-25T00:00:00-05:00').getTime(),
+      desc: 'Tics until Christmas',
+    },
+    {
+      id: 'ma',
+      time: new Date('2023-05-27T00:00:00-05:00').getTime(),
+      desc: "Ma's Birthday",
+    },
+    {
+      id: 'covid',
+      time: new Date('2020-02-01T00:00:00-05:00').getTime(),
+      desc: 'Covid-19 outbreak',
+    },
+    {
+      id: 'old',
+      time: new Date('1988-02-14T00:00:00-05:00').getTime(),
+      desc: 'How old I am',
+    },
+    {
+      id: 'mayflower',
+      time: new Date('1620-11-20T00:00:00-05:00').getTime(),
+      desc: "Mayflower's voyage",
+    },
+  ]
 
-function set_it() {
-  document.getElementById('bang-time').innerHTML =
-    '14~47000000' + convert_secs(0).replace(/0+$/, '')
-  modify_element('sun', convert_secs(SOLAR))
-  modify_element('bruins', convert_secs(BROONS))
+  EVENTS.forEach((e) => {
+    create_dom_element(e)
+  })
+
+  setInterval(() => {
+    document.getElementById('bang-time').innerHTML =
+      '14~47000000' + convert_secs(0).replace(/0+$/, '')
+    EVENTS.forEach((e) => {
+      modify_element(e.id, convert_secs(e.time), e.desc)
+    })
+  }, 1000 * 0.56)
 }
 
-function modify_element(el_name, tics) {
+function create_dom_element(e) {
+  $('.container').append(
+    $('<div class="wrapper"></div>').append(
+      $('<h2 id="' + e.id + '"></h2>'),
+      $('<p id="' + e.id + '-desc" class="info"></p>')
+    )
+  )
+}
+
+function modify_element(el_name, tics, desc) {
   document.getElementById(el_name).innerHTML =
-    (tics.length - 1).toString(BASE) +
+    (tics.length - 1).toString(12) +
     '~' +
     tics.substring(0, 3).replace(/0+$/, '')
+  document.getElementById(el_name + '-desc').innerHTML = desc
 }
 
 function convert_secs(x) {
   a = Math.abs((Date.now() - x) / 1000)
   let tics = Math.floor(a * 1.78)
-  return tics.toString(BASE)
+  return tics.toString(12)
 }
 
 function get_upcoming_solar_event() {
@@ -31,7 +82,6 @@ function get_upcoming_solar_event() {
       let res = make_request(req_url + '&date=tomorrow')
       return res.rise
     }
-    document.getElementById('until').innerHTML = 'Tics until sunset'
     return res.set
   }
   return res.rise
@@ -52,6 +102,4 @@ function make_request(url) {
   return res
 }
 
-setInterval(() => {
-  set_it()
-}, 1000 * 0.56)
+main()
