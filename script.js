@@ -3,7 +3,7 @@ async function main() {
   const EVENTS = [
     {
       id: 'sun',
-      time: get_upcoming_solar_event(),
+      time: await get_upcoming_solar_event(),
       desc: 'Tics until next solar event',
     },
     {
@@ -91,13 +91,13 @@ async function get_upcoming_bruins_game() {
   return res
 }
 
-function get_upcoming_solar_event() {
+async function get_upcoming_solar_event() {
   let req_url =
     'https://api.sunrise-sunset.org/json?lat=43.008663&lng=-71.454391&formatted=0'
-  let res = make_request(req_url)
+  let res = await make_request(req_url)
   if (Date.now() - res.rise > 0) {
     if (Date.now() - res.set > 0) {
-      let res = make_request(req_url + '&date=tomorrow')
+      let res = await make_request(req_url + '&date=tomorrow')
       return res.rise
     }
     return res.set
@@ -105,13 +105,11 @@ function get_upcoming_solar_event() {
   return res.rise
 }
 
-function make_request(url) {
+async function make_request(url) {
   let res = { rise: 0, set: 0 }
-  $.ajax({
+  await $.ajax({
     url: url,
     dataType: 'json',
-    /* how to make this work when 'true'? */
-    async: false,
     success: (data) => {
       res.rise = new Date(data.results.sunrise).getTime()
       res.set = new Date(data.results.sunset).getTime()
