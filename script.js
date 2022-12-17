@@ -1,4 +1,5 @@
-function main() {
+async function main() {
+  const BROONS = await get_upcoming_bruins_game()
   const EVENTS = [
     {
       id: 'sun',
@@ -7,8 +8,8 @@ function main() {
     },
     {
       id: 'bruins',
-      time: new Date('2022-12-15T19:00:00-05:00').getTime(),
-      desc: 'Next Bruins game!',
+      time: BROONS.time,
+      desc: BROONS.desc,
     },
     {
       id: 'xmas',
@@ -71,6 +72,23 @@ function convert_secs(x) {
   a = Math.abs((Date.now() - x) / 1000)
   let tics = Math.floor(a * 1.78)
   return tics.toString(12)
+}
+
+async function get_upcoming_bruins_game() {
+  let res = {}
+  let data = {}
+  await $.getJSON('bruins.json', (json) => {
+    data = json
+  })
+  for (let i = 0; i < data.schedule.length; i++) {
+    let d = new Date(data.schedule[i].DTSTART).getTime()
+    if (d > Date.now()) {
+      res.desc = data.schedule[i].SUMMARY
+      res.time = d
+      break
+    }
+  }
+  return res
 }
 
 function get_upcoming_solar_event() {
