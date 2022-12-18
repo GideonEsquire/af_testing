@@ -94,16 +94,26 @@ async function get_upcoming_bruins_game() {
 }
 
 async function get_upcoming_solar_event() {
+  let store = window.localStorage
+  let local_item = Number(store.getItem('solar'))
+  if (local_item && local_item > Date.now()) {
+    return local_item
+  }
+
+  console.log('api request made')
   let req_url =
     'https://api.sunrise-sunset.org/json?lat=43.008663&lng=-71.454391&formatted=0'
   let res = await make_request(req_url)
   if (Date.now() - res.rise > 0) {
     if (Date.now() - res.set > 0) {
       let res = await make_request(req_url + '&date=tomorrow')
+      store.setItem('solar', res.rise)
       return res.rise
     }
+    store.setItem('solar', res.set)
     return res.set
   }
+  store.setItem('solar', res.rise)
   return res.rise
 }
 
