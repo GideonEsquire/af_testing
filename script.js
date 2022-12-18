@@ -1,9 +1,10 @@
 async function main() {
   const BROONS = await get_upcoming_bruins_game()
+  const SOLAR = await get_upcoming_solar_event()
   const EVENTS = [
     {
       id: 'sun',
-      time: await get_upcoming_solar_event(),
+      time: SOLAR,
       desc: 'Tics until next solar event',
     },
     {
@@ -13,27 +14,27 @@ async function main() {
     },
     {
       id: 'xmas',
-      time: new Date('2022-12-25T00:00:00-05:00').getTime(),
+      time: '2022-12-25T00:00:00-05:00',
       desc: 'Tics until Christmas',
     },
     {
       id: 'ma',
-      time: new Date('2023-05-27T00:00:00-05:00').getTime(),
+      time: '2023-05-27T00:00:00-05:00',
       desc: "Ma's Birthday",
     },
     {
       id: 'covid',
-      time: new Date('2020-02-01T00:00:00-05:00').getTime(),
+      time: '2020-02-01T00:00:00-05:00',
       desc: 'Covid-19 outbreak',
     },
     {
       id: 'old',
-      time: new Date('1988-02-14T00:00:00-05:00').getTime(),
+      time: '1988-02-14T00:00:00-05:00',
       desc: 'How old I am',
     },
     {
       id: 'mayflower',
-      time: new Date('1620-11-20T00:00:00-05:00').getTime(),
+      time: '1620-11-20T00:00:00-05:00',
       desc: "Mayflower's voyage",
     },
   ]
@@ -69,7 +70,8 @@ function modify_element(el_name, tics, desc) {
 }
 
 function convert_secs(x) {
-  a = Math.abs((Date.now() - x) / 1000)
+  let get_time = new Date(x).getTime()
+  let a = Math.abs((Date.now() - get_time) / 1000)
   let tics = Math.floor(a * 1.78)
   return tics.toString(12)
 }
