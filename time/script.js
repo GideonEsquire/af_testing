@@ -104,8 +104,8 @@ async function get_upcoming_solar_event() {
   let req_url =
     'https://api.sunrise-sunset.org/json?lat=43.008663&lng=-71.454391&formatted=0'
   let res = await make_request(req_url)
-  if (Date.now() - res.rise > 0) {
-    if (Date.now() - res.set > 0) {
+  if (Date.now() > res.rise) {
+    if (Date.now() > res.set) {
       let res = await make_request(req_url + '&date=tomorrow')
       store.setItem('solar', res.rise)
       return res.rise
