@@ -26,15 +26,25 @@ async function main() {
       desc: 'Lucks in one millimeter',
     },
     {
-      id: 'planck',
-      length: 6.362401574 * 10 ** -34,
-      desc: 'Lucks in one Planck length',
+      id: 'mile',
+      length: 5280 * 12,
+      desc: 'Lucks in one mile',
     },
     {
-      id: 'universe',
-      length: 10 ** 28 * 5280 * 12,
-      desc: 'Radius of the known universe',
+      id: 'kilometer',
+      length: 39370.08,
+      desc: 'Lucks in one kilometer',
     },
+    /* { */
+    /*   id: 'planck', */
+    /*   length: 6.362401574 * 10 ** -34, */
+    /*   desc: 'Lucks in one Planck length', */
+    /* }, */
+    /* { */
+    /*   id: 'universe', */
+    /*   length: 10 ** 28 * 5280 * 12, */
+    /*   desc: 'Radius of the known universe', */
+    /* }, */
     {
       id: 'trip',
       length: 2451 * 5280 * 12,
@@ -66,7 +76,7 @@ function modify_element(el_name, lucks, desc) {
 /* return formatted base 12 number as a string */
 function form_str(num) {
   let str = num.toString(12)
-  let scale = str.length - 1
+  let scale = (str.length - 1).toString(12)
   let sign = num < 1 ? '⚬' : ''
   let value = str
     .replace(/\./, '')
@@ -74,14 +84,9 @@ function form_str(num) {
     .substring(0, 3)
     .replace(/0+$/, '')
   if (str.includes('.')) {
-    for (let i = 1; i < str.length; i++) {
-      if ((str[i] = '.')) scale = i - 1
-      if (str[0] != '0') break
-      scale++
-      if (str[i + 1] != '0') break
-    }
+    if (str[1] != '.') scale = str.indexOf('.') - 1
+    else scale = str.replace(/\./, '').match(/^0*/)[0].length.toString(12)
   }
-  scale = scale.toString(12)
   return sign + scale + '~' + value
 }
 
