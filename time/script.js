@@ -13,19 +13,19 @@ async function main() {
       desc: BROONS.desc,
     },
     {
-      id: 'xmas',
-      time: '2022-12-25T00:00:00-05:00',
-      desc: 'Tics until Christmas',
-    },
-    {
       id: 'ma',
       time: '2023-05-27T00:00:00-05:00',
       desc: "Ma's Birthday",
     },
     {
+      id: 'xmas',
+      time: '2023-12-25T00:00:00-05:00',
+      desc: 'Tics until Christmas',
+    },
+    {
       id: 'covid',
       time: '2020-02-01T00:00:00-05:00',
-      desc: 'Covid-19 outbreak',
+      desc: 'Tics since start of Covid',
     },
     {
       id: 'old',
@@ -35,7 +35,7 @@ async function main() {
     {
       id: 'mayflower',
       time: '1620-11-20T00:00:00-05:00',
-      desc: "Mayflower's voyage",
+      desc: "Tics since Mayflower's voyage",
     },
   ]
 
