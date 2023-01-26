@@ -44,8 +44,11 @@ async function main() {
   })
 
   setInterval(() => {
-    document.getElementById('bang-time').innerHTML =
-      '14~47000000' + convert_secs(0).replace(/0+$/, '')
+    document.getElementById('current-time').innerHTML = convert_secs(0)
+      .substring(4, 7)
+      .replace(/0+$/, '')
+    /* document.getElementById('bang-time').innerHTML = */
+    /*   '14~47000000' + convert_secs(0).replace(/0+$/, '') */
     EVENTS.forEach((e) => {
       modify_element(e.id, convert_secs(e.time), e.desc)
     })
