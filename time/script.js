@@ -19,14 +19,19 @@ async function main() {
       desc: 'Start work',
     },
     {
-      id: 'ma',
-      time: '2023-05-27T00:00:00-05:00',
-      desc: "Ma's Birthday",
+      id: 'europe',
+      time: '2023-10-03T00:00:00-05:00',
+      desc: 'Flight to Europe',
     },
     {
       id: 'xmas',
       time: '2023-12-25T00:00:00-05:00',
       desc: 'Tics until Christmas',
+    },
+    {
+      id: 'ma',
+      time: '2024-05-27T00:00:00-05:00',
+      desc: "Ma's Birthday",
     },
     {
       id: 'covid',
