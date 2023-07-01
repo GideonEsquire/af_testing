@@ -1,5 +1,6 @@
 async function main() {
-  const BROONS = await get_upcoming_bruins_game()
+  /* const BROONS = await get_upcoming_bruins_game() */
+  const SCHED = await get_upcoming_sched()
   const SOLAR = await get_upcoming_solar_event()
   const EVENTS = [
     {
@@ -7,10 +8,15 @@ async function main() {
       time: SOLAR,
       desc: 'Tics until next solar event',
     },
+    /* { */
+    /*   id: 'bruins', */
+    /*   time: BROONS.time, */
+    /*   desc: BROONS.desc, */
+    /* }, */
     {
-      id: 'bruins',
-      time: BROONS.time,
-      desc: BROONS.desc,
+      id: 'sched',
+      time: SCHED.time,
+      desc: 'Start work',
     },
     {
       id: 'ma',
@@ -77,6 +83,23 @@ function convert_secs(x) {
   let a = Math.abs((Date.now() - get_time) / 1000)
   let tics = Math.floor(a * 1.78)
   return tics.toString(12)
+}
+
+async function get_upcoming_sched() {
+  let res = {}
+  let data = {}
+  await $.getJSON('sched.json', (json) => {
+    data = json
+  })
+  for (let i = 0; i < data.schedule.length; i++) {
+    let d = new Date(data.schedule[i].DTSTART).getTime()
+    if (d > Date.now()) {
+      res.desc = data.schedule[i].SUMMARY
+      res.time = d
+      break
+    }
+  }
+  return res
 }
 
 async function get_upcoming_bruins_game() {
