@@ -79,7 +79,7 @@ function modify_element(el_name, tics, desc) {
   document.getElementById(el_name).innerHTML =
     (tics.length - 1).toString(6) +
     '~' +
-    tics.substring(0, 1).replace(/0+$/, '')
+    tics.substring(0, 1).replace(/[01]+$/, '')
   document.getElementById(el_name + '-desc').innerHTML = desc
 }
 
