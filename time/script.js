@@ -56,7 +56,7 @@ async function main() {
 
   setInterval(() => {
     document.getElementById('current-time').innerHTML = convert_secs(0)
-      .substring(4, 7)
+      //.substring(4, 7)
       .replace(/0+$/, '')
     /* document.getElementById('bang-time').innerHTML = */
     /*   '14~47000000' + convert_secs(0).replace(/0+$/, '') */
@@ -79,7 +79,7 @@ function modify_element(el_name, tics, desc) {
   document.getElementById(el_name).innerHTML =
     (tics.length - 1).toString(6) +
     '~' +
-    tics.substring(0, 2).replace(/0+$/, '')
+    tics.substring(0, 1).replace(/0+$/, '')
   document.getElementById(el_name + '-desc').innerHTML = desc
 }
 
