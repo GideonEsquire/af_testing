@@ -63,7 +63,7 @@ async function main() {
     EVENTS.forEach((e) => {
       modify_element(e.id, convert_secs(e.time), e.desc)
     })
-  }, 1000 * 0.56)
+  }, 1000 * 1.42)
 }
 
 function create_dom_element(e) {
@@ -77,7 +77,7 @@ function create_dom_element(e) {
 
 function modify_element(el_name, tics, desc) {
   document.getElementById(el_name).innerHTML =
-    (tics.length - 1).toString(12) +
+    (tics.length - 1).toString(6) +
     '~' +
     tics.substring(0, 3).replace(/0+$/, '')
   document.getElementById(el_name + '-desc').innerHTML = desc
@@ -86,8 +86,8 @@ function modify_element(el_name, tics, desc) {
 function convert_secs(x) {
   let get_time = new Date(x).getTime()
   let a = Math.abs((Date.now() - get_time) / 1000)
-  let tics = Math.floor(a * 1.78)
-  return tics.toString(12)
+  let tics = Math.floor(a * 0.703)
+  return tics.toString(6)
 }
 
 async function get_upcoming_sched() {
