@@ -1,6 +1,6 @@
 async function main() {
-  /* const BROONS = await get_upcoming_bruins_game() */
-  const SCHED = await get_upcoming_sched()
+  const BROONS = await get_upcoming_bruins_game()
+  // const SCHED = await get_upcoming_sched()
   const SOLAR = await get_upcoming_solar_event()
   const EVENTS = [
     {
@@ -8,24 +8,24 @@ async function main() {
       time: SOLAR,
       desc: 'Tics until next solar event',
     },
-    /* { */
-    /*   id: 'bruins', */
-    /*   time: BROONS.time, */
-    /*   desc: BROONS.desc, */
-    /* }, */
     {
-      id: 'sched',
-      time: SCHED.time,
-      desc: 'Start work',
+      id: 'bruins',
+      time: BROONS.time,
+      desc: BROONS.desc,
     },
-    {
-      id: 'europe',
-      time: '2023-10-03T00:00:00-05:00',
-      desc: 'Flight to Europe',
-    },
+    // {
+    //   id: 'sched',
+    //   time: SCHED.time,
+    //   desc: 'Start work',
+    // },
+    // {
+    //   id: 'europe',
+    //   time: '2023-10-03T00:00:00-05:00',
+    //   desc: 'Flight to Europe',
+    // },
     {
       id: 'xmas',
-      time: '2023-12-25T00:00:00-05:00',
+      time: '2024-12-25T00:00:00-05:00',
       desc: 'Tics until Christmas',
     },
     {
@@ -56,10 +56,7 @@ async function main() {
 
   setInterval(() => {
     document.getElementById('current-time').innerHTML = convert_secs(0)
-      //.substring(4, 7)
       .replace(/0+$/, '')
-    /* document.getElementById('bang-time').innerHTML = */
-    /*   '14~47000000' + convert_secs(0).replace(/0+$/, '') */
     EVENTS.forEach((e) => {
       modify_element(e.id, convert_secs(e.time), e.desc)
     })
@@ -93,7 +90,7 @@ function convert_secs(x) {
 async function get_upcoming_sched() {
   let res = {}
   let data = {}
-  await $.getJSON('sched.json', (json) => {
+  await $.getJSON('../sched.json', (json) => {
     data = json
   })
   for (let i = 0; i < data.schedule.length; i++) {
@@ -110,7 +107,7 @@ async function get_upcoming_sched() {
 async function get_upcoming_bruins_game() {
   let res = {}
   let data = {}
-  await $.getJSON('bruins.json', (json) => {
+  await $.getJSON('../bruins.json', (json) => {
     data = json
   })
   for (let i = 0; i < data.schedule.length; i++) {
