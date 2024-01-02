@@ -69,9 +69,9 @@ function create_dom_element(e) {
 
 function modify_element(el_name, days, desc) {
   document.getElementById(el_name).innerHTML =
-    (days.length - 5).toString(6) +
+    (days.length - 4).toString(6) +
     '~' +
-    days.substring(0, 4).replace(/0+$/, '')
+    days.substring(0, 3).replace(/0+$/, '')
   document.getElementById(el_name + '-desc').innerHTML = desc
 }
 
@@ -79,7 +79,7 @@ function convert_secs(x) {
   let get_time = new Date(x).getTime()
   let mils_in_a_day = 1000 * 60 * 60 * 24
   let days = Math.abs((Date.now() - get_time) / mils_in_a_day)
-  let result = Number(days.toString(6)).toFixed(4).replace(/\./, '')
+  let result = Number(days.toString(6)).toFixed(3).replace(/\./, '')
   return result
 }
 
