@@ -51,6 +51,17 @@
   transition: top 0.3s ease-in-out, width 0.3s ease-in-out;
 }
 
+.button-stopwatch {
+  border: none;
+  width: 3em;
+  height: 100%;
+  margin: 0 3px 0 3px;
+  color: var(--light0);
+  background-color: var(--dark0);
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
 .sidebar {
   background-color: var(--dark1);
   position: fixed;
@@ -159,6 +170,7 @@ header {
   margin: 0.5em;
   border-radius: 10px;
   width: 95%;
+  min-height: 4.7em;
   box-shadow: 2px 3px 6px 2px var(--dark0);
   -webkit-box-shadow: 2px 3px 6px 2px var(--dark0);
   overflow: hidden;
@@ -193,6 +205,7 @@ li {
   width: 50%;
   display: flex;
   justify-content: right;
+  align-items: center;
 }
 
 h2 {
@@ -200,7 +213,7 @@ h2 {
   width: 50%;
   display: flex;
   font-family: 'AF';
-  /* align-items: left; */
+  align-items: center;
 }
 
 img {
