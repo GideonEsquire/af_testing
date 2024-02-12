@@ -1,8 +1,10 @@
 let laps = 0
 let days
+let cur_days
 let start_time = 0
 let current_lap_start = 0
 let pause_total = 0
+let cur_total = 0
 let timer_running = false
 
 function reset() {
@@ -11,17 +13,21 @@ function reset() {
 
 function lap() {
   if (timer_running) {
-    create_dom_element(convert_secs(current_lap_start))
+    // TODO: Still haven't figured this out...
+    create_dom_element(convert_secs('lap', current_lap_start - cur_total))
   }
   current_lap_start = Date.now()
 }
 
 function toggle_play() {
   if (timer_running) {
+    document.getElementById("button-play").style["background-color"] = "var(--dark0)";
     pause_total = days * 1000 * 60 * 60 * 24
+    cur_total = cur_days * 1000 * 60 * 60 * 24
   } else {
-    start_time = Date.now() + pause_total
-    current_lap_start = Date.now() + pause_total
+    document.getElementById("button-play").style["background-color"] = "var(--dark3)";
+    start_time = Date.now() - pause_total
+    current_lap_start = Date.now() - cur_total
   }
   timer_running = !timer_running
 }
@@ -29,10 +35,10 @@ function toggle_play() {
 function main() {
   setInterval(() => {
     if (timer_running) {
-      modify_element("current-lap", convert_secs(current_lap_start))
-      modify_element("current-time", convert_secs(start_time))
+      modify_element("current-lap", convert_secs('lap', current_lap_start))
+      modify_element("current-time", convert_secs('total', start_time))
     }
-  }, 1851)
+  }, 1851/6)
 }
 
 function create_dom_element(t) {
@@ -49,10 +55,17 @@ function modify_element(el_name, time) {
   document.getElementById(el_name).innerHTML = time
 }
 
-function convert_secs(x) {
+function convert_secs(t, x) {
   let mils_in_a_day = 1000 * 60 * 60 * 24
-  days = Math.abs((Date.now() - x) / mils_in_a_day)
-  let result = form_str(days)
+  let result
+  if (t === 'total') {
+    days = Math.abs((Date.now() - x) / mils_in_a_day)
+    result = form_str(days)
+  }
+  if (t === 'lap') {
+    cur_days = Math.abs((Date.now() - x) / mils_in_a_day)
+    result = form_str(cur_days)
+  }
   return result
 }
 
