@@ -208,6 +208,14 @@ li {
   align-items: center;
 }
 
+h1 {
+  font-size: 6em;
+  margin: 10px;
+  display: flex;
+  font-family: 'AF';
+  align-items: center;
+}
+
 h2 {
   margin: 20px;
   width: 50%;
@@ -225,7 +233,15 @@ img {
   margin: 1em 0 0 0;
 }
 
-.animate-charcter {
+.clock-container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.animate-character {
   background-image: linear-gradient(
     -90deg,
     var(--frost3) 0%,
@@ -272,7 +288,7 @@ img {
   .re-title {
     font-size: 16px;
   }
-  .animate-charcter {
+  .animate-character {
     font-size: 2em;
   }
 }
