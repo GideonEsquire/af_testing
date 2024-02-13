@@ -84,7 +84,7 @@ function form_str(num) {
     .substring(0, 3)
     .replace(/0+$/, '')
   if (str.includes('.')) {
-    if (str[1] != '.') scale = str.indexOf('.') - 1
+    if (str[1] != '.') scale = (str.indexOf('.') - 1).toString(6)
     else scale = str.replace(/\./, '').match(/^0*/)[0].length.toString(12)
   }
   return sign + scale + '~' + value

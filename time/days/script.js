@@ -52,13 +52,9 @@ async function main() {
   })
 
   setInterval(() => {
-    // TODO: add the current-time to 'EVENTS'
-    document.getElementById('current-time').innerHTML = '5~' + convert_secs(0)
-      .replace(/0+$/, '')
     EVENTS.forEach((e) => {
       modify_element(e.id, convert_secs(e.time), e.desc)
     })
-    // TODO: Change mils to be more accurate
   }, 1000)
 }
 
@@ -75,10 +71,7 @@ function create_dom_element(e) {
 // TODO: Move reused functions to a file and export/import where needed
 // and don't use the toString and other nonsense here
 function modify_element(el_name, days, desc) {
-  document.getElementById(el_name).innerHTML =
-    (days.length - 4).toString(6) +
-    '~' +
-    days.substring(0, 3).replace(/0+$/, '')
+  document.getElementById(el_name).innerHTML = days
   document.getElementById(el_name + '-desc').innerHTML = desc
 }
 
@@ -87,8 +80,7 @@ function convert_secs(x) {
   let get_time = new Date(x).getTime()
   let mils_in_a_day = 1000 * 60 * 60 * 24
   let days = Math.abs((Date.now() - get_time) / mils_in_a_day)
-  let result = Number(days.toString(6)).toFixed(3).replace(/\./, '')
-  return result
+  return form_str(days)
 }
 
 /* num = base 10 number */
@@ -103,7 +95,7 @@ function form_str(num) {
     .substring(0, 3)
     .replace(/0+$/, '')
   if (str.includes('.')) {
-    if (str[1] != '.') scale = str.indexOf('.') - 1
+    if (str[1] != '.') scale = (str.indexOf('.') - 1).toString(6)
     else scale = str.replace(/\./, '').match(/^0*/)[0].length.toString(6)
   }
   return sign + scale + '~' + value
