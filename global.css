@@ -5,6 +5,9 @@
 }
 
 :root {
+  /* Out of Palette */
+  --darkest: #292e39;
+
   /* Polar night */
   --dark0: #2e3440;
   --dark1: #3b4252;
@@ -239,6 +242,7 @@ img {
   display: flex;
   align-items: center;
   justify-content: center;
+  background: var(--darkest);
 }
 
 .animate-character {
