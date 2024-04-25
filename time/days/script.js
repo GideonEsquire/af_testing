@@ -144,8 +144,8 @@ async function get_upcoming_solar_event() {
 
   console.log('api request made')
   let req_url =
-    //'https://api.sunrise-sunset.org/json?lat=43.008663&lng=-71.454391&formatted=0'//manch
-    'https://api.sunrise-sunset.org/json?lat=34.0445189&lng=-118.2450975&formatted=0' //LA
+    'https://api.sunrise-sunset.org/json?lat=43.008663&lng=-71.454391&formatted=0' //manch
+  // 'https://api.sunrise-sunset.org/json?lat=34.0445189&lng=-118.2450975&formatted=0' //LA
   let res = await make_request(req_url)
   if (Date.now() > res.rise) {
     if (Date.now() > res.set) {
