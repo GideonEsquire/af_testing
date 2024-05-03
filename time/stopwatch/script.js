@@ -11,10 +11,10 @@ let timer_running = false
 function main() {
   setInterval(() => {
     if (timer_running) {
-      modify_element("current-lap", convert_secs('lap', current_lap_start))
-      modify_element("total-time", convert_secs('total', timestamp_first_start))
+      modify_element('current-lap', convert_secs('lap', current_lap_start))
+      modify_element('total-time', convert_secs('total', timestamp_first_start))
     }
-  }, 1850/6)
+  }, 308)
 }
 
 function reset() {
@@ -30,11 +30,11 @@ function lap() {
 
 function toggle_play() {
   if (timer_running) {
-    change_button("var(--dark0)")
+    change_button('var(--dark0)')
     pause_total = elapsed_total * DAY_IN_MILS
     cur_total = cur_days * DAY_IN_MILS
   } else {
-    change_button("var(--dark3)")
+    change_button('var(--dark3)')
     timestamp_first_start = Date.now() - pause_total
     current_lap_start = Date.now() - cur_total
   }
@@ -42,7 +42,7 @@ function toggle_play() {
 }
 
 function change_button(color) {
-    document.getElementById("button-play").style["background-color"] = color;
+  document.getElementById('button-play').style['background-color'] = color
 }
 
 function create_dom_element(t) {
