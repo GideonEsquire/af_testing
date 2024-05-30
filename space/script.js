@@ -36,31 +36,6 @@ async function main() {
       desc: 'Lucks to next nearest star',
     },
     {
-      id: 'inch',
-      length: 1,
-      desc: 'Lucks in one inch',
-    },
-    {
-      id: 'foot',
-      length: 12,
-      desc: 'Lucks in one foot',
-    },
-    {
-      id: 'millimeter',
-      length: 0.03937008,
-      desc: 'Lucks in one millimeter',
-    },
-    {
-      id: 'mile',
-      length: 5280 * 12,
-      desc: 'Lucks in one mile',
-    },
-    {
-      id: 'kilometer',
-      length: 39370.08,
-      desc: 'Lucks in one kilometer',
-    },
-    {
       id: 'planck',
       length: 6.362401574 * 10 ** -34,
       desc: 'Lucks in one Planck length',
