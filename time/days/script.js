@@ -1,5 +1,5 @@
 async function main() {
-  //const BROONS = await get_upcoming_bruins_game()
+  const BROONS = await get_upcoming_bruins_game()
   // const SCHED = await get_upcoming_sched()
   const SOLAR = await get_upcoming_solar_event()
   // TODO: Make 'Events' its own json file
@@ -15,11 +15,11 @@ async function main() {
     //  time: SCHED.time,
     //  desc: 'Start work',
     //},
-    //{
-    //  id: 'bruins',
-    //  time: BROONS.time,
-    //  desc: BROONS.desc,
-    //},
+    {
+      id: 'bruins',
+      time: BROONS.time,
+      desc: BROONS.desc,
+    },
     {
       id: 'ma',
       time: '2024-05-27T00:00:00',
