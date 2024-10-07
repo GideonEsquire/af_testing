@@ -1,6 +1,6 @@
 async function main() {
   const BROONS = await get_upcoming_bruins_game()
-  // const SCHED = await get_upcoming_sched()
+  const SCHED = await get_upcoming_sched()
   const SOLAR = await get_upcoming_solar_event()
   // TODO: Make 'Events' its own json file
   // TODO: Seperate 'SOLAR' into set and rise
@@ -10,11 +10,11 @@ async function main() {
       time: SOLAR,
       desc: 'Days until next solar event',
     },
-    //{
-    //  id: 'sched',
-    //  time: SCHED.time,
-    //  desc: 'Start work',
-    //},
+    {
+      id: 'sched',
+      time: SCHED.time,
+      desc: 'Start work',
+    },
     {
       id: 'bruins',
       time: BROONS.time,
@@ -22,7 +22,7 @@ async function main() {
     },
     {
       id: 'ma',
-      time: '2024-05-27T00:00:00',
+      time: '2025-05-27T00:00:00',
       desc: "Ma's Birthday",
     },
     {
@@ -30,21 +30,21 @@ async function main() {
       time: '2024-12-25T00:00:00',
       desc: 'Days until Christmas',
     },
-    {
-      id: 'covid',
-      time: '2020-02-01T00:00:00',
-      desc: 'Days since start of Covid',
-    },
+    //{
+    //  id: 'covid',
+    //  time: '2020-02-01T00:00:00',
+    //  desc: 'Days since start of Covid',
+    //},
     {
       id: 'old',
       time: '1988-02-14T00:00:00',
       desc: 'How old I am',
     },
-    {
-      id: 'mayflower',
-      time: '1620-11-20T00:00:00',
-      desc: "Days since Mayflower's voyage",
-    },
+    //{
+    //  id: 'mayflower',
+    //  time: '1620-11-20T00:00:00',
+    //  desc: "Days since Mayflower's voyage",
+    //},
   ]
 
   EVENTS.forEach((e) => {
@@ -125,15 +125,15 @@ async function get_upcoming_bruins_game() {
   let data = {}
   await $.getJSON('../bruins.json', (json) => {
     data = json
-  })
-  for (let i = 0; i < data.schedule.length; i++) {
-    let d = new Date(data.schedule[i].DTSTART).getTime()
-    if (d > Date.now()) {
-      res.desc = data.schedule[i].SUMMARY
-      res.time = d
-      break
+    for (let i = 0; i < data.schedule.length; i++) {
+      let d = new Date(data.schedule[i].DTSTART).getTime()
+      if (d > Date.now()) {
+        res.desc = data.schedule[i].SUMMARY
+        res.time = d
+        break
+      }
     }
-  }
+  })
   return res
 }
 
