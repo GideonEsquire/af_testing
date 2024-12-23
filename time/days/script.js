@@ -21,25 +21,25 @@ async function main() {
       desc: BROONS.desc,
     },
     {
-      id: 'ma',
-      time: '2025-05-27T00:00:00',
-      desc: "Ma's Birthday",
-    },
-    {
       id: 'xmas',
       time: '2024-12-25T00:00:00',
       desc: 'Days until Christmas',
+    },
+    {
+      id: 'ma',
+      time: '2025-05-27T00:00:00',
+      desc: "Ma's Birthday",
     },
     //{
     //  id: 'covid',
     //  time: '2020-02-01T00:00:00',
     //  desc: 'Days since start of Covid',
     //},
-    {
-      id: 'old',
-      time: '1988-02-14T00:00:00',
-      desc: 'How old I am',
-    },
+    //{
+    //  id: 'old',
+    //  time: '1988-02-14T00:00:00',
+    //  desc: 'How old I am',
+    //},
     //{
     //  id: 'mayflower',
     //  time: '1620-11-20T00:00:00',
