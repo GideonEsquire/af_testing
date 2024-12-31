@@ -9,9 +9,11 @@ function build_date() {
   let days = (Date.now() - new Date(0).getTime()) / (1000 * 60 * 60 * 24)
   let str = form_str(days)
   for (let i = 0; i < 3; i++) {
-    document.getElementsByTagName('h1')[i].innerHTML = str
-      .substring(i * 3, i * 3 + 3)
-      .replace(/0+$/, '')
+    document.getElementsByTagName('h1')[i].innerHTML = str.substring(
+      i * 3,
+      i * 3 + 3
+    )
+    //.replace(/0+$/, '')
   }
 }
 
