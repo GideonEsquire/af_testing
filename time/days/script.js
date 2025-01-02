@@ -10,25 +10,25 @@ async function main() {
       time: SOLAR,
       desc: 'Days until next solar event',
     },
-    {
-      id: 'sched',
-      time: SCHED.time,
-      desc: 'Start work',
-    },
+    //{
+    //  id: 'sched',
+    //  time: SCHED.time,
+    //  desc: 'Start work',
+    //},
     {
       id: 'bruins',
       time: BROONS.time,
       desc: BROONS.desc,
     },
     {
-      id: 'xmas',
-      time: '2024-12-25T00:00:00',
-      desc: 'Days until Christmas',
-    },
-    {
       id: 'ma',
       time: '2025-05-27T00:00:00',
       desc: "Ma's Birthday",
+    },
+    {
+      id: 'xmas',
+      time: '2025-12-25T00:00:00',
+      desc: 'Days until Christmas',
     },
     //{
     //  id: 'covid',
